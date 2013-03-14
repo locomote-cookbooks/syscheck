@@ -15,7 +15,6 @@ end
 def install_syscheck
   bash "Install syscheck binary" do
     code %{sh -c "`curl https://raw.github.com/locochris/syscheck/master/install.sh`"}
-    not_if "test -x /usr/local/bin/syscheck"
   end
 end
 
