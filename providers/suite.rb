@@ -1,3 +1,5 @@
+SYSCHECK_DEPENDENCIES = %w{bc}
+
 action :nothing do
   provide_script
 end
@@ -12,7 +14,14 @@ def provide_script
   create_script
 end
 
+def install_syscheck_dependencies
+  SYSCHECK_DEPENDENCIES.each do |pkg|
+    package pkg
+  end
+end
+
 def install_syscheck
+  install_syscheck_dependencies
   bash "Install syscheck binary" do
     code %{sh -c "`curl https://raw.github.com/locochris/syscheck/master/install.sh`"}
   end
